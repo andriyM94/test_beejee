@@ -1,6 +1,5 @@
 <?php
 namespace app;
-// use app\core\view;
 
 class Router {
 
