@@ -23,20 +23,15 @@ class Main
 		return $result;
 	}
 
-	public function getLimitTasks()
+	public function getLimitTasks($start, $num)
 	{	
-		if (isset($_GET['page'])) {
-              $page = $_GET['page'];
-            } else {
-              $page = 1;
-			}
-		$num=3;
-		$start = $page * $num - $num;
-		$params=[
-			'start' => $start,
-			'num' => $num
-		];
-		$result = $this->db->row('SELECT * FROM tasks ORDER BY id DESC LIMIT '.$start.', '.$num.' ');
+		$result = $this->db->row('SELECT * FROM tasks LIMIT '.$start.', '.$num.' ');
+		return $result;
+	}
+
+	public function getLimitTasksBy($start, $num, $sort_name, $sort_by)
+	{	
+		$result = $this->db->row('SELECT * FROM tasks ORDER BY '.$sort_name.' '.$sort_by.' LIMIT '.$start.', '.$num.' ');
 		return $result;
 	}
 

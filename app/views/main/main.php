@@ -22,8 +22,22 @@
       <a class="btn btn-outline-primary" href="/main/login" id="log_in">Log In</a>
     </header>
     <section class="main_content container mt-2">
+    
+      
+    </div>
       <div class="row">
         <div class="col-8 mt-4">
+
+          
+          <div class="col-12">
+            Sort by:
+            <div>
+            Имя пользователя: <a href="/main/main/username/asc/">&#9650;</a><a href="/main/main/username/desc/">&#9660;</a>
+            Еmail: <a href="/main/main/email/asc/">&#9650;</a><a href="/main/main/email/desc/">&#9660;</a>
+            Статус: <a href="/main/main/status/asc/">&#9650;</a><a href="/main/main/status/desc/">&#9660;</a>
+            </div>
+          </div>
+
           <div class="contett_tasks d-flex flex-column flex-md-row">
             <?php 
               foreach ($tasks as $key => $value) {
@@ -84,11 +98,11 @@
                 for ($i=1; $i < $total+1; $i++) { 
                   if ($page == $i) {
                      ?>
-                    <li class="page-item active"><a class="page-link" href="/main/main?page=<?php echo $i?>"><?php echo $i?></a></li>
+                    <li class="page-item active"><a class="page-link" href="?page=<?php echo $i?>"><?php echo $i?></a></li>
                   <?php
                   } else {
                     ?>
-                    <li class="page-item"><a class="page-link" href="/main/main?page=<?php echo $i?>"><?php echo $i?></a></li>
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo $i?>"><?php echo $i?></a></li>
                   <?php
                   }
                 }
