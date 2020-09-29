@@ -99,13 +99,13 @@
                 if ($_SERVER["REQUEST_URI"] == '/') {
                   $s_path = 'main/main/';
                 } else {
-                  $s_path = $_SERVER["REDIRECT_URL"];
+                  $arrr_path = explode('?', $_SERVER["REQUEST_URI"]);
+                  $s_path = $arrr_path[0];
                 }
-                
                 for ($i=1; $i < $total+1; $i++) { 
                   if ($page == $i) {
                      ?>
-                    <li class="page-item active"><a class="page-link" href="<?php echo $s_path;?>?page=<?php echo $i?>"><?php echo $i?></a></li>
+                    <li class="page-item active"><a class="page-link"><?php echo $i?></a></li>
                   <?php
                   } else {
                     ?>
