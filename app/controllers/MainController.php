@@ -11,13 +11,15 @@ class MainController {
     public $view;
     public $num = 3;
     protected $db;
-    public $sort_name;
-    public $sort_by;
+    public $sort_name = 'id';
+    public $sort_by = 'desc';
     
     public function __construct($route, $nameClass, $sort_name, $sort_by ) {
-        $this->route = $route;    
-        $this->sort_name = $sort_name;    
-        $this->sort_by = $sort_by;    
+        $this->route = $route;
+        if (!empty($sort_name) && !empty($sort_by)) {
+            $this->sort_name = $sort_name;    
+            $this->sort_by = $sort_by;  
+        }    
         $this->view = new View($this->route);
         $this->model = $this->loadModel($nameClass); 
     }
@@ -33,23 +35,12 @@ class MainController {
 			}
             
         $start = $page * $this->num - $this->num;
-        
-        if (empty($this->sort_name)) {
-            $tasksLimit = $this->model->getLimitTasks($start, $this->num);
-            $vars = [
-                'tasks' => $tasksLimit,
-                'count' => $count[0]['COUNT(*)']
-            ];
-            $this->view->render($vars); 
-        } else {
-            $tasksLimit = $this->model->getLimitTasksBy($start, $this->num, $this->sort_name, $this->sort_by);
-            $vars = [
-                'tasks' => $tasksLimit,
-                'count' => $count[0]['COUNT(*)']
-            ];
-            $this->view->render($vars); 
-        }
-        
+        $tasksLimit = $this->model->getLimitTasksBy($start, $this->num, $this->sort_name, $this->sort_by);
+        $vars = [
+            'tasks' => $tasksLimit,
+            'count' => $count[0]['COUNT(*)']
+        ];
+        $this->view->render($vars); 
     }
 
     public function LoginAction() {

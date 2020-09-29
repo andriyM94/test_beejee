@@ -95,14 +95,21 @@
             <ul class="pagination justify-content-center">
               <?php
               if ($count != 0) {
+
+                if ($_SERVER["REQUEST_URI"] == '/') {
+                  $s_path = 'main/main/';
+                } else {
+                  $s_path = $_SERVER["REDIRECT_URL"];
+                }
+                
                 for ($i=1; $i < $total+1; $i++) { 
                   if ($page == $i) {
                      ?>
-                    <li class="page-item active"><a class="page-link" href="?page=<?php echo $i?>"><?php echo $i?></a></li>
+                    <li class="page-item active"><a class="page-link" href="<?php echo $s_path;?>?page=<?php echo $i?>"><?php echo $i?></a></li>
                   <?php
                   } else {
                     ?>
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo $i?>"><?php echo $i?></a></li>
+                    <li class="page-item"><a class="page-link" href="<?php echo $s_path;?>?page=<?php echo $i?>"><?php echo $i?></a></li>
                   <?php
                   }
                 }
